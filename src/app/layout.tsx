@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Auth from '@/components/auth/Auth'
 import NavBar from "@/components/NavBar";
+import { isAuthenticated } from "@/utils/amplify-utils";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description: "List all titles and comments",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -29,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NavBar isSignedIn={false}/>
+        <NavBar isSignedIn={await isAuthenticated()}/>
         <Auth>
           {children}
         </Auth>
