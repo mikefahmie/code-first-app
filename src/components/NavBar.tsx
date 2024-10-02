@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import {Button, Divider, Flex} from "@aws-amplify/ui-react"
 import { signOut } from 'aws-amplify/auth';
@@ -72,7 +72,7 @@ export default function NavBar({ isSignedIn }: {isSignedIn: boolean}) {
                     variation='primary'
                     borderRadius='2rem'
                     className='mr-4'
-                    onClick={SignOutSignIn}
+                    onClick={signOutSignIn}
                 >
                     {authCheck ? "Sign Out" : "Sign In"}
                 </Button>
